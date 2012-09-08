@@ -14,3 +14,4 @@ deps/
 tmp/
 coverage_html/
 gitflow
+node_modules/
