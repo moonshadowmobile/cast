@@ -17,9 +17,9 @@
 
 var fs = require('fs');
 var path = require('path');
-var constants = require('constants');
 
 var async = require('async');
+var errCode = require('errno').code;
 
 var tail = require('util/tail');
 
@@ -29,7 +29,7 @@ exports['test_tailFile_file_does_not_exist'] = function(test, assert) {
   tail.tailFile('/inexistent/path/yeah.more', 500, false,
                 function onData(err, data, unsubscribe) {
     assert.ok(err);
-    assert.equal(err.errno, constants.ENOENT);
+    assert.equal(err.code, errCode.ENOENT.code);
     test.finish();
   });
 };
@@ -69,7 +69,7 @@ exports['test_tailFile_follow_file_does_not_exist'] = function(test, assert) {
   tail.tailFile('/inexistent/path/yeah.more', 500, true,
                 function onData(err, data, unsubscribe) {
     assert.ok(err);
-    assert.equal(err.errno, constants.ENOENT);
+    assert.equal(err.code, errCode.ENOENT.code);
     test.finish();
   });
 };

@@ -16,10 +16,10 @@
  */
 
 var path = require('path');
-var constants = require('constants');
 
 var async = require('async');
 var sprintf = require('sprintf').sprintf;
+var errCode = require('errno').code;
 
 var config = require('util/config');
 var version = require('util/version');
@@ -190,7 +190,7 @@ exports['test_discoverServices_inexistent_plugins_directory'] = function(test,
   plugins.services.discoverServices('/some/inexistent/dir', function(err,
                                                                      services) {
     assert.ok(err);
-    assert.ok(err.errno, constants.ENOENT);
+    assert.ok(err.code, errCode.ENOENT.code);
     test.finish();
   });
 };
@@ -221,7 +221,7 @@ exports['test_discoverEndpoints_inexistent_plugins_directory'] = function(test,
   plugins.http.discoverEndpoints('/some/inexistent/dir', function(err,
                                                                   routes) {
     assert.ok(err);
-    assert.ok(err.errno, constants.ENOENT);
+    assert.ok(err.code, errCode.ENOENT.code);
     test.finish();
   });
 };

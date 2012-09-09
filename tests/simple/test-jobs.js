@@ -19,11 +19,11 @@ var util = require('util');
 var path = require('path');
 var fs = require('fs');
 var exec = require('child_process').exec;
-var constants = require('constants');
 
 var async = require('async');
 var sprintf = require('sprintf').sprintf;
 var swiz = require('swiz');
+var errCode = require('errno').code;
 
 var fsutil = require('util/fs');
 var jobs = require('jobs');
@@ -357,7 +357,7 @@ exports['test_directory_resource_queueing'] = function(test, assert) {
         deleted = true;
         fs.stat(path.join(TEST_RESOURCE_ROOT, 'foo'), function(err, stats) {
           assert.ok(err);
-          assert.equal(err.errno, constants.ENOENT);
+          assert.equal(err.code, errCode.ENOENT.code);
         });
       });
 

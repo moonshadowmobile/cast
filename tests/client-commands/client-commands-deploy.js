@@ -17,9 +17,9 @@
 
 var path = require('path');
 var fs = require('fs');
-var constants = require('constants');
 
 var async = require('async');
+var errCode = require('errno').code;
 
 var fsUtil = require('util/fs');
 var testUtil = require('util/test');
@@ -130,7 +130,7 @@ exports['test_instance_create_and_upgrade'] = function(test, assert) {
       // the upload command should fail.
       deployCmd(args, null, function onResult(err, message) {
         assert.ok(err);
-        assert.ok((err.errno === constants.ECONNREFUSED || err.errno === constants.ETIMEDOUT));
+        assert.ok((err.code === errCode.ECONNREFUSED.code || err.code === errCode.ETIMEDOUT.code));
         callback();
       });
     },
