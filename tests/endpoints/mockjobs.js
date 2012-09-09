@@ -20,20 +20,25 @@ var util = require('util');
 var events = require('events');
 
 var async = require('async');
+var swiz = require('swiz');
 
 var jobs = require('jobs');
 var agentManagers = require('cast-agent/managers');
 
 
 // There is no need to get fancy with the serializer definition
-agentManagers.registerSerializerDefs({
-  'Job': [
-    ['id', {src: 'id', type: 'string'}],
-    ['cparams', {src: 'cparams', type: 'map<string,string>'}],
-    ['last_emitted', {src: 'lastEmitted', type: 'string'}]
-  ]
-});
-
+agentManagers.registerSerializerDefs([
+  swiz.struct.Obj(
+    'Job',
+    {
+      'fields': [
+        swiz.struct.Field('id', {'src': 'id'}),
+        swiz.struct.Field('cparams', {'src': 'cparams'}),
+        swiz.struct.Field('last_emitted', {'src': 'lastEmitted'})
+      ]
+    }
+  )
+]);
 
 // A MockJob fires a sequence of events, with a call to process.nextTick()
 // between each.

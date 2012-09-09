@@ -30,20 +30,17 @@ var jobs = require('jobs');
 
 var TEST_RESOURCE_ROOT = '.tests/testresource';
 
-
-var defs = {
-  TestResource: [
-    ['name', {
-      src: 'name',
-      type: 'string'
-    }],
-    ['data', {
-      src: 'getDataText',
-      type: 'string'
-    }]
-  ]
-};
-
+var defs = [
+  swiz.struct.Obj(
+    'TestResource',
+    {
+      'fields': [
+        swiz.struct.Field('name', {'src': 'name'}),
+        swiz.struct.Field('data', {'src': 'getDataText'})
+      ]
+    }
+  )
+];
 
 function TestResource(name) {
   jobs.DirectoryResource.call(this, name);

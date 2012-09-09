@@ -130,7 +130,6 @@ exports['test_wait_error'] = function(test, assert) {
     assert.equal(res.statusCode, 200);
     assert.deepEqual(res.body, {
       id: 'this-is-a-mock-job',
-      cparams: null,
       last_emitted: 'error'
     });
     test.finish();
