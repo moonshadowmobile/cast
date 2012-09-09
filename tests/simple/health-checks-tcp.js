@@ -57,7 +57,7 @@ exports['test_check_connection_failure'] = function(test, assert) {
 
   check.run(function(result) {
     assert.equal(result.status, CheckStatus.ERROR);
-    assert.match(result.details, /(connection refused|connection timed out|ETIMEDOUT)/i);
+    assert.match(result.details, /(connection refused|connection timed out|ETIMEDOUT|ECONNREFUSED)/i);
     test.finish();
   });
 };
