@@ -19,6 +19,7 @@ var fs = require('fs');
 var fsutil = require('util/fs');
 
 var async = require('async');
+var errCode = require('errno').code;
 
 exports['test_templateToTreeSimple_complex'] = function(test, assert) {
   var tmpl = {
@@ -81,7 +82,7 @@ exports['test_templateToTreeSimple_complex'] = function(test, assert) {
     function(callback) {
       fsutil.templateToTree('.tests/fsutil/template', tmpl, false, function(err) {
         assert.ok(err);
-        assert.equal(err.errno, 17);
+        assert.equal(err.code, errCode.EEXIST.code);
         callback();
       });
     },
@@ -156,7 +157,7 @@ exports['test_templateToTree_throws_exception_on_existing_directory'] = function
     assert.equal(err, undefined);
 
     fsutil.templateToTree(".tests/fsutil.template1", tmpl, false, function(err) {
-      assert.equal(err.errno, 17);
+      assert.equal(err.code, errCode.EEXIST.code);
       assert.match(err.message, /eexist/i);
 
       fsutil.templateToTree(".tests/fsutil.template1", tmpl, true, function(err) {
