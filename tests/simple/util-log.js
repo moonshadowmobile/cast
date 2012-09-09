@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-var sys = require('sys');
+var util = require('util');
 
 var log = require('util/log');
 
-var sysLog = sys.log;
+var utilLog = util.log;
 
 exports['test_trace'] = function(test, assert) {
   var trace = log.trace('test trace');
@@ -30,7 +30,7 @@ exports['test_trace'] = function(test, assert) {
 
 exports['test_setLogLevel'] = function(test, assert) {
   var buffer = '';
-  sys.log = function(data) {
+  util.log = function(data) {
     buffer += data;
   };
 
@@ -45,6 +45,6 @@ exports['test_setLogLevel'] = function(test, assert) {
 };
 
 exports['tearDown'] = function(test, assert) {
-  sys.log = sysLog;
+  util.log = utilLog;
   test.finish();
 };

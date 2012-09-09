@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-var sys = require('sys');
+var util = require('util');
 var path = require('path');
 var fs = require('fs');
 var exec = require('child_process').exec;
@@ -50,7 +50,7 @@ function TestResource(name) {
   this._serializer = new swiz.Swiz(defs);
 }
 
-sys.inherits(TestResource, jobs.DirectoryResource);
+util.inherits(TestResource, jobs.DirectoryResource);
 
 
 TestResource.prototype.getParentDir = function() {
@@ -73,7 +73,7 @@ function TestResourceManager() {
   this.resourceType = TestResource;
 }
 
-sys.inherits(TestResourceManager, jobs.ResourceManager);
+util.inherits(TestResourceManager, jobs.ResourceManager);
 
 
 function CreateTestResourceJob(name) {
@@ -83,7 +83,7 @@ function CreateTestResourceJob(name) {
   this.resourceName = name;
 }
 
-sys.inherits(CreateTestResourceJob, jobs.Job);
+util.inherits(CreateTestResourceJob, jobs.Job);
 
 
 CreateTestResourceJob.prototype.run = function(testResource, callback) {
@@ -106,7 +106,7 @@ function FailCreateTestResourceJob(name) {
   CreateTestResourceJob.call(this, name);
 }
 
-sys.inherits(FailCreateTestResourceJob, CreateTestResourceJob);
+util.inherits(FailCreateTestResourceJob, CreateTestResourceJob);
 
 
 FailCreateTestResourceJob.prototype.run = function(testResource, callback) {
@@ -121,7 +121,7 @@ function DeleteTestResourceJob(name) {
   this.resourceName = name;
 }
 
-sys.inherits(DeleteTestResourceJob, jobs.Job);
+util.inherits(DeleteTestResourceJob, jobs.Job);
 
 DeleteTestResourceJob.prototype.run = function(testResource, callback) {
   fsutil.rmtree(testResource.getRoot(), callback);
@@ -135,7 +135,7 @@ function ModifyTestResourceJob(name, text) {
   this.resourceName = name;
 }
 
-sys.inherits(ModifyTestResourceJob, jobs.Job);
+util.inherits(ModifyTestResourceJob, jobs.Job);
 
 
 ModifyTestResourceJob.prototype.run = function(testResource, text, callback) {

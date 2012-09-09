@@ -25,7 +25,7 @@
  * way we could test the command for adding remotes as well.
  */
 
-var sys = require('sys');
+var util = require('util');
 var fs = require('fs');
 var path = require('path');
 var crypto = require('crypto');

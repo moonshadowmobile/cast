@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var sys = require('sys');
+var util = require('util');
 
 var sprintf = require('sprintf').sprintf;
 var async = require('async');
@@ -48,7 +48,7 @@ function AgentTest() {
   this._logBuffer = [];
 }
 
-sys.inherits(AgentTest, Agent);
+util.inherits(AgentTest, Agent);
 
 AgentTest.prototype.logCommand = function(command, type, commandArguments) {
   this._logBuffer.push([ command, type, commandArguments ]);
