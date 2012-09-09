@@ -29,18 +29,15 @@
  *   node docgen.js ../../cast-site/content/docs/client
  */
 
-var pathSetup = require('../lib/util/path_setup').pathSetup;
-pathSetup();
-
 var sys = require('sys');
 var path = require('path');
 var fs = require('fs');
 
 var sprintf = require('sprintf').sprintf;
 
-var fsutil = require('util/fs');
-var term = require('util/terminal');
-var parser = require('cast-client/parser');
+var fsutil = require('../lib/util/fs');
+var term = require('../lib/util/terminal');
+var parser = require('../lib/cast-client/parser');
 
 var WIDTH = 80;
 

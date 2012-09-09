@@ -19,13 +19,8 @@
 /**
  * Wrapper around agent entry point.
  */
-var pathSetup = require('../lib/util/path_setup').pathSetup;
-
-pathSetup();
-
 function main() {
-  pathSetup();
-  var agent = require('cast-agent/entry');
+  var agent = require('../lib/cast-agent/entry');
   agent.run();
 }
 
