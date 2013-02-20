@@ -211,16 +211,16 @@ exports['test_bundles'] = function(test, assert) {
         assert.ifError(err);
         assert.deepEqual(apps, [
           {
-            name: 'barapp',
-            bundles: [
-              'barapp@1.0.tar.gz'
-            ]
-          },
-          {
             name: 'fooapp',
             bundles: [
               'fooapp@1.0.tar.gz',
               'fooapp@1.5.tar.gz'
+            ]
+          },
+          {
+            name: 'barapp',
+            bundles: [
+              'barapp@1.0.tar.gz'
             ]
           }
         ]);
@@ -276,15 +276,15 @@ exports['test_bundles'] = function(test, assert) {
         assert.ifError(err);
         assert.deepEqual(apps, [
           {
-            name: 'barapp',
-            bundles: [
-              'barapp@1.0.tar.gz'
-            ]
-          },
-          {
             name: 'fooapp',
             bundles: [
               'fooapp@1.0.tar.gz'
+            ]
+          },
+          {
+            name: 'barapp',
+            bundles: [
+              'barapp@1.0.tar.gz'
             ]
           }
         ]);
